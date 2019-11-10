@@ -4,6 +4,7 @@ import $ from 'jquery';
 
 import Vue from 'vue';
 import Timeline from './pages/components/Timeline';
+import SvgInline from './pages/components/svg-inline';
 
 // Uncomment for use BOOTSTAP4
 // window.Popper = require('popper.js').default;
@@ -22,6 +23,7 @@ $(() => {
 });
 
 Vue.component('time-line', Timeline);
+Vue.component('svg-inline', SvgInline);
 const app = new Vue({
 	el:'#app'
 });

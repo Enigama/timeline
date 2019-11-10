@@ -12,15 +12,18 @@
         <div class="timeline__number timeline__number--minutes">{{minutes}}</div>
         <div class="timeline__desc">{{textMinutes}}</div>
     </div>
-    <div class="timeline__icon timeline__icon--info timeline__icon--timeline"
-         data-content="test3">
-        @svg('static/icons/information.svg')
-    </div>
+  	<svg-inline class="timeline__icon timeline__icon--info timeline__icon--timeline"
+         data-content="test3" icon="information">    	
+		</svg-inline>
 </div>
 </template>
 
 <script>
+	import svgInline from './svg-inline';
   export default {
+  	component:{
+  		svgInline
+  	},
     data(){
     	return{
     		time: '',
