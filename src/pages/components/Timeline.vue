@@ -1,19 +1,23 @@
 <template>
   <div class="timeline">
     <div class="timeline__time">
-        <div class="timeline__number timeline__number--day">{{days}}</div>
+        <div class="timeline__number timeline__number--day">{{day}}</div>
         <div class="timeline__desc">{{textDays}}</div>
     </div>
     <div class="timeline__time">
-        <div class="timeline__number timeline__number--hour">{{hours}}</div>
+        <div class="timeline__number timeline__number--hour">{{hour}}</div>
         <div class="timeline__desc">{{textHours}}</div>
     </div>
     <div class="timeline__time">
-        <div class="timeline__number timeline__number--minutes">{{minutes}}</div>
+        <div class="timeline__number timeline__number--minutes">{{minute}}</div>
         <div class="timeline__desc">{{textMinutes}}</div>
     </div>
-  	<svg-inline class="timeline__icon timeline__icon--info timeline__icon--timeline"
-         data-content="test3" icon="information">    	
+  	<svg-inline
+  		class="timeline__icon timeline__icon--info timeline__icon--timeline"
+			icon="information"
+			:content=tippyContent
+			v-tippy="{...tippySettings}"
+		>    	
 		</svg-inline>
 </div>
 </template>
@@ -24,36 +28,47 @@
   	component:{
   		svgInline
   	},
+  	props: [
+  		'tippyContent',
+  		'finish',
+  		'days',
+  		'hours',
+  		'minutes',
+  		'seconds',
+		],
     data(){
     	return{
-    		time: '',
+    		time: new Date(this.finish * 1000),
 
-    		days: 0,
-    		hours: 0,
-    		minutes: 0,
-    		seconds: 0,
+    		day: 0,
+    		hour: 0,
+    		minute: 0,
+    		sec: 0,
 
     		textDays: '',
     		textHours: '',
     		textMinutes: '',
     		textSeconds: '',
 
-    		arrDeys: [],
-    		arrHours: [],
-    		arrMinutes: [],
+    		arrDays: this.createArrText(this.days),
+    		arrHours: this.createArrText(this.hours),
+    		arrMinutes: this.createArrText(this.minutes),
     		arrSeconds: [],
+
+    		tippySettings: {
+    			placement : 'top',
+    			arrow: true,
+    			theme: 'light',
+    		},
     	}
     },
     mounted(){
-			this.time = new Date(this.$attrs["finish"] * 1000);
-			this.arrDays = this.$attrs["days"].split(',')
-			this.arrHours = this.$attrs["hours"].split(',')
-			this.arrMinutes = this.$attrs["minutes"].split(',')
-			this.arrSeconds = this.$attrs["seconds"].split(',')
     	this.initTimer();
-    	console.log(this)
     },
     methods: {
+    	createArrText(text){
+    		return text.split(',')
+    	},
     	initTimer(){
     		this.updateTimer()
     		const timeinterval = setInterval(this.updateTimer, 1000);
@@ -80,10 +95,10 @@
     		const minutes = ('0' + t.minutes).slice(-2);
     		const seconds = ('0' + t.seconds).slice(-2)
 
-    		this.days = days;
-    		this.hours = hours;
-    		this.minutes = minutes;
-    		this.seconds = seconds;
+    		this.day = days;
+    		this.hour = hours;
+    		this.minute = minutes;
+    		this.second = seconds;
 
     		this.textDays = this.pluralize(days, this.arrDays)
     		this.textHours = this.pluralize(hours, this.arrHours)
