@@ -50,9 +50,9 @@
     		textMinutes: '',
     		textSeconds: '',
 
-    		arrDays: this.createArrText(this.days),
-    		arrHours: this.createArrText(this.hours),
-    		arrMinutes: this.createArrText(this.minutes),
+    		// arrDays: this.createArrText(this.days),
+    		// arrHours: this.createArrText(this.hours),
+    		// arrMinutes: this.createArrText(this.minutes),
     		arrSeconds: [],
 
     		tippySettings: {
@@ -100,9 +100,9 @@
     		this.minute = minutes;
     		this.second = seconds;
 
-    		this.textDays = this.pluralize(days, this.arrDays)
-    		this.textHours = this.pluralize(hours, this.arrHours)
-    		this.textMinutes = this.pluralize(minutes, this.arrMinutes)	      
+    		this.textDays = this.pluralize(days, this.createArrText(this.days))
+    		this.textHours = this.pluralize(hours, this.createArrText(this.hours))
+    		this.textMinutes = this.pluralize(minutes, this.createArrText(this.minutes))	      
 	      
 	      if (t.total <= 0) {
 	        clearInterval(timeinterval);
