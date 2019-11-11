@@ -23,6 +23,7 @@
 </template>
 
 <script>
+	import 'tippy.js/themes/light.css';
 	import svgInline from './svg-inline';
   export default {
   	component:{
@@ -49,11 +50,6 @@
     		textHours: '',
     		textMinutes: '',
     		textSeconds: '',
-
-    		// arrDays: this.createArrText(this.days),
-    		// arrHours: this.createArrText(this.hours),
-    		// arrMinutes: this.createArrText(this.minutes),
-    		arrSeconds: [],
 
     		tippySettings: {
     			placement : 'top',
